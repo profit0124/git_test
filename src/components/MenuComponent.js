@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle } from 'reactstrap';
 
@@ -15,8 +16,9 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
         onDishSelect(dish) {
             this.setState({ selectedDish: dish});
         }
+
     
-        renderDish(dish) {
+        renderDish(dish) {            
             if (dish != null)
                 return(
                     <Card>
@@ -32,6 +34,40 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
                     <div></div>
                 );
         }
+
+
+        renderComments(dish) {
+            
+            if (dish != null){
+                const com = "Comment";
+                return(
+                    <div>
+                        <h4>{com}</h4>
+                        <div>
+                            {dish.comments.map((comment) => {
+                                
+                                return(
+                                    <div>
+                                        <div>{comment.comment}</div><br></br>
+                                        <div>{"-- "}{comment.author}{" , "}<Moment format="MMM DD, YYYY">{comment.date}</Moment></div><br></br> 
+                                    </div>
+                                );
+                               
+                            })}
+                        </div>
+                    </div>
+                    
+                );
+            }
+
+                   
+            else
+                return(
+                    <div></div>
+                );
+            
+                
+        }
     
         render() {
             const menu = this.props.dishes.map((dish) => {
@@ -45,6 +81,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
                       </CardImgOverlay>
                     </Card>
                   </div>
+                  
                 );
             });
     
@@ -56,6 +93,9 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
                     <div className="row">
                       <div  className="col-12 col-md-5 m-1">
                         {this.renderDish(this.state.selectedDish)}
+                      </div>
+                      <div  className="col-12 col-md-5 m-1">
+                        {this.renderComments(this.state.selectedDish)}
                       </div>
                     </div>
                 </div>
