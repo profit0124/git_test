@@ -7,7 +7,7 @@ function RenderLeader ({leader}) {
     return (
         <Media>
         <Media left>
-          <img src={leader.image} heigh="64" width="64"/>
+          <img src={leader.image} heigh="100" width="100" alt="images"/> &nbsp;&nbsp;
         </Media>
         <Media body>
           <Media heading>
@@ -26,7 +26,10 @@ function RenderLeader ({leader}) {
 function About(props) {
     const leaders = props.leaders.map((leader) => {
         return (
-            <p>Leader {leader.name}</p>
+            <div key={leader.id}>
+                <RenderLeader leader={leader} />
+                <br /><br />
+            </div>
         );
     });
     
@@ -85,11 +88,8 @@ function About(props) {
                 <div className="col-12">
                     <h2>Corporate Leadership</h2>
                 </div>
-                <div className="col-12">
-                    <RenderLeader leader={props.leaders[0]} />
-                </div>
-                <div className="col-12">
-                    
+                
+                <div className="col-12">    
                     <Media list>
                         {leaders}
                     </Media>
