@@ -20,7 +20,7 @@ import CommentForm from './CommentForm';
         
     }
 
-    function RenderComments({comments}) {
+    function RenderComments({comments, addComment, dishId}) {
             if (comments != null){
             const com = "Comment";
             return(
@@ -38,6 +38,7 @@ import CommentForm from './CommentForm';
                             
                         })}
                     </div>
+                    <CommentForm dishId={dishId} addComment={addComment}/>
                 </div>
                 
             );
@@ -67,8 +68,8 @@ import CommentForm from './CommentForm';
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} />
-                        <CommentForm />
+                        <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id}/>
+                        
                     </div>
                     
                     
