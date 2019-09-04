@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  Button, Modal, ModalHeader, ModalBody, Row, Label} from 'reactstrap';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 
 
